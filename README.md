@@ -5,7 +5,8 @@
 * php bin/console doctrine:migrations:migrate
 * composer update
 * symfony server:start
-
+# api 
+* http://127.0.0.1:8000/api/contact
 # Json que recibe el api 
 
 {
