@@ -5,7 +5,8 @@
 * php bin/console doctrine:migrations:migrate
 * composer update
 * symfony server:start
-#Json que recibe el api 
+
+# Json que recibe el api 
 
 {
     "first_name": "camilo",
