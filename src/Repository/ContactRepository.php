@@ -33,10 +33,23 @@ class ContactRepository extends ServiceEntityRepository
                 ->setEmail($data['email'])
                 ->setCel($data['cel'])
                 ->setMessage($data['message'])
-                ->setContactArea($data['contact_area']);
+                ->setContactArea($data['contact_area'])
+                ->setCreatedAt(new \DateTimeImmutable());
 
         $this->getEntityManager()->persist($newContact);
         $this->getEntityManager()->flush();
+    }
+
+    public function findMessagesByDay($email)
+    {
+        $date = new \DateTimeImmutable();
+        return $this->createQueryBuilder('c')
+            ->where('DATE(c.created_at) = :date')
+            ->andWhere('c.email = :email')
+            ->setParameter('date', $date->format('Y-m-d'))
+            ->setParameter('email',$email)
+            ->getQuery()
+            ->getResult();
     }
 
    

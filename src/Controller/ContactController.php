@@ -25,6 +25,12 @@ class ContactController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
+        $messageForDay = $this->contactRepository
+                              ->findMessagesByDay($data['email']);
+        if ($messageForDay) {
+            return new JsonResponse(['status' => 'only one message per day!'], Response::HTTP_IM_USED);
+        }
+        
         $this->contactRepository->create($data);
 
         return new JsonResponse(['status' => 'Contact created!'], Response::HTTP_CREATED);

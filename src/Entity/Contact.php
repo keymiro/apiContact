@@ -33,6 +33,9 @@ class Contact
     #[ORM\Column(length: 500)]
     private ?string $contact_area = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +109,18 @@ class Contact
     public function setContactArea(string $contact_area): self
     {
         $this->contact_area = $contact_area;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }
